@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Proveedores } from 'src/app/models/proveedores.model';
+import { FormGroup, FormBuilder } from "@angular/forms";
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CatalogosService } from 'src/app/services/catalogos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-proveedor',
@@ -26,9 +26,23 @@ export class UpdateProveedorComponent implements OnInit {
 
   ngOnInit(): void {
     this.catalogosService.getProvedoresDetalle(this.data.id).subscribe(response =>{
-      console.log("response ==>", response);
+      this.form.controls["nombre"].setValue(response["nombre"]);
+      this.form.controls["telefono"].setValue(response["telefono"]);
+      this.form.controls["telefono2"].setValue(response["telefono2"]);
+      this.form.controls["direccion"].setValue(response["direccion"]);
     })
-    
+  }
+
+  onSubmit( formdata:any){
+    this.catalogosService.updateProveedor(this.data.id, formdata).subscribe(response =>{
+      Swal.fire(
+        'Guardado Correctamente',
+        '',
+        'success'
+      )
+      window.location.reload();
+
+    })
   }
 
 }
