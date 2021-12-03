@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CatProvedoresComponent } from './modulos/cat-provedores/cat-provedores.component';
+import { SociedadesComponent } from './modulos/catalogos/sociedades/sociedades.component';
 import { PanelComponent } from './modulos/panel/panel.component';
 
 const routes: Routes = [
@@ -15,6 +16,11 @@ const routes: Routes = [
       {
         path: "proveedores",
         component: CatProvedoresComponent,
+        data: { titulo: "Menu Principal" }
+      },
+      {
+        path: "sociedades",
+        component: SociedadesComponent,
         data: { titulo: "Menu Principal" }
       },
     ]

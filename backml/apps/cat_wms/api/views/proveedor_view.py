@@ -1,16 +1,12 @@
 
 from rest_framework import viewsets
 from rest_framework import status, pagination
-from rest_framework.response import Response
-
 from apps.cat_wms.api import serializers as srlzrs
-from apps.base.serializer import CustomPagination
 
 
 class ProveedorViewSet(viewsets.ModelViewSet):
     serializer_class = srlzrs.ProveedorSerializer
     pagination_class = pagination.LimitOffsetPagination
-
 
     def get_queryset(self, pk=None):
         if pk is None:

@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PanelComponent } from './modulos/panel/panel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { CatProvedoresComponent } from './modulos/cat-provedores/cat-provedores.component';
 
 import {MaterialModule} from '../material.module';
@@ -16,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DetalleProvedorComponent } from './modulos/cat-provedores/detalle-provedor/detalle-provedor.component';
 import { FormProveedorComponent } from './modulos/cat-provedores/form-proveedor/form-proveedor.component';
 import { UpdateProveedorComponent } from './modulos/cat-provedores/update-proveedor/update-proveedor.component';
+import { SociedadesComponent } from './modulos/catalogos/sociedades/sociedades.component';
 
 
 @NgModule({
@@ -26,7 +30,8 @@ import { UpdateProveedorComponent } from './modulos/cat-provedores/update-provee
     NavbarComponent,
     DetalleProvedorComponent,
     FormProveedorComponent,
-    UpdateProveedorComponent
+    UpdateProveedorComponent,
+    SociedadesComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -36,7 +41,8 @@ import { UpdateProveedorComponent } from './modulos/cat-provedores/update-provee
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

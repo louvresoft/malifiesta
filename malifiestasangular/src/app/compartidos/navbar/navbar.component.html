@@ -10,7 +10,7 @@
       </button>
   
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="pl-3">
-        <span fxHide fxShow.xs>Malifiestas</span>
+        <span fxHide fxShow.xs>Malifiesta</span>
       </div>
   
       <span fxFlex></span>
@@ -26,13 +26,36 @@
           <button mat-button routerLink="/page1" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
             <mat-icon class="mr-2">filter_1</mat-icon>Page 1</button>
           <mat-divider></mat-divider>
-        </div>
+        
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Catálogos
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+    
+              <mat-nav-list>
+                <a mat-list-item [routerLink]="['/sociedades']" >
+                  Sociedades
+                </a>
+                <a mat-list-item [routerLink]="['/Provedores']" >
+                  Proveedores
+                </a>
+              </mat-nav-list>
+            </mat-expansion-panel>
+          </mat-accordion></div>
       </mat-drawer>
   
       <!--PAGES-->
       <div style="display: inline;">
         <router-outlet></router-outlet>
+        <br>
       </div>
-  
     </mat-drawer-container>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted"></span>
+      </div>
+    </footer>
   </div>
