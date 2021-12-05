@@ -1,10 +1,9 @@
-from rest_framework import viewsets
-from rest_framework import pagination
+from rest_framework import viewsets, pagination
 from apps.cat_wms.api import serializers as srlzrs
 
 
-class SociedadViewSet(viewsets.ModelViewSet):
-    serializer_class = srlzrs.SociedadSerializer
+class CentroViewSet(viewsets.ModelViewSet):
+    serializer_class = srlzrs.CentroSerializer
     pagination_class = pagination.LimitOffsetPagination
 
     def get_queryset(self, pk=None):

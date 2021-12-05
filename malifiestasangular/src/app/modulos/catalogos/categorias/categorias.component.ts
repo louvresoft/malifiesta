@@ -1,34 +1,33 @@
 import {AfterViewInit, OnInit, Component, ViewChild, ElementRef} from '@angular/core';
 import { catchError, debounceTime, distinctUntilChanged, map, startWith, switchMap } from "rxjs/operators";
 import { ActivatedRoute } from '@angular/router';
-import { fromEvent, Observable, of } from 'rxjs';
+import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { ThrowStmt } from '@angular/compiler';
 
-import { CatalogosService } from 'src/app/services/catalogos.service';
+import { fromEvent, Observable, of } from 'rxjs';
+import { merge } from 'rxjs/internal/observable/merge';
+
 
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource} from '@angular/material/table';
+
+
+import Swal from 'sweetalert2';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
-import { merge } from 'rxjs/internal/observable/merge';
-
-
-
-import { Sociedades } from 'src/app/models/sociedades.models';
-import Swal from 'sweetalert2';
-import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
-import { ThrowStmt } from '@angular/compiler';
+import { CatalogosService } from 'src/app/services/catalogos.service';
+import { Categorias } from 'src/app/models/categorias.models';
 
 
 @Component({
-  selector: 'app-sociedades',
-  templateUrl: './sociedades.component.html',
-  styleUrls: ['./sociedades.component.css']
+  selector: 'app-categorias',
+  templateUrl: './categorias.component.html',
+  styleUrls: ['./categorias.component.css']
 })
-export class SociedadesComponent implements OnInit, AfterViewInit {
-
-  displayedColumns: string[] = ['id', 'sociedad', 'nomenglatura', 'actions'];
-  dataSource : MatTableDataSource<Sociedades> = new MatTableDataSource([]);  
+export class CategoriasComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['id', 'nombre', 'actions'];
+  dataSource : MatTableDataSource<Categorias> = new MatTableDataSource([]);  
   searchValue: string = "";
   search: Observable<string>;
   no_peticion: string = "";
@@ -36,10 +35,10 @@ export class SociedadesComponent implements OnInit, AfterViewInit {
   existeData: boolean= false;
   // modals cruds
   closeResult = '';
-  detalleSociedadData:any;
-  detalleSociedadDataBandera: boolean = false;
-  updateSociedadDataBandera: boolean = false;
-  crearSociedadDataBandera: boolean = false;
+  detalleCategoriaData:any;
+  detalleCategoriaDataBandera: boolean = false;
+  updateCategoriaDataBandera: boolean = false;
+  crearCategoriaDataBandera: boolean = false;
 
   idActualizar:number = 0;
 
@@ -50,9 +49,9 @@ export class SociedadesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-
   constructor(private catalogosService: CatalogosService, private activatedRoute: ActivatedRoute, 
-              private modalService: NgbModal,private formBuilder: FormBuilder,) { }
+    private modalService: NgbModal,private formBuilder: FormBuilder) { }
+
 
   ngOnInit() {
     this.search = fromEvent(this.inputSearch.nativeElement, 'keyup').pipe(
@@ -81,15 +80,15 @@ export class SociedadesComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.obtenerSociedades();
+    this.obtenerCategorias();
   }
 
-  obtenerSociedades(): void{
+  obtenerCategorias(): void{
     merge( this.paginator.page, this.search)
     .pipe(
       startWith({}),
       switchMap(() => {
-        return this.catalogosService.getSociedades(
+        return this.catalogosService.getCategorias(
           this.searchValue,
           this.paginator.pageSize,
           this.paginator.pageIndex
@@ -113,46 +112,44 @@ export class SociedadesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  detalleSociedad(id: number, content): void{
-    this.detalleSociedadDataBandera = false;
+  detalleCategoria(id: number, content): void{
+    this.detalleCategoriaDataBandera = false;
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size:'lg'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed`;
     });
 
-    this.catalogosService.getSociedadDetalle(id).subscribe(
+    this.catalogosService.getCategoriaDetalle(id).subscribe(
       resp =>{
-        this.detalleSociedadDataBandera = true;
-          this.detalleSociedadData = resp;
+        this.detalleCategoriaDataBandera = true;
+          this.detalleCategoriaData = resp;
       }
     )
   }
 
-  editarFormSociedad(id: number, contentEditarSociedad){
+  editarFormCategoria(id: number, contentEditarCategoria){
     this.idActualizar = id;
     this.formEditar = this.formBuilder.group({
-      sociedad: [""],
-      nomenglatura: [""],
+      nombre: [""],
     });
 
 
-    this.modalService.open(contentEditarSociedad, {size: 'sm'}).result.then((result)=>{
+    this.modalService.open(contentEditarCategoria, {size: 'sm'}).result.then((result)=>{
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed`;
     });
 
-    this.catalogosService.getSociedadDetalle(id).subscribe(response =>{
-      this.formEditar.controls["sociedad"].setValue(response["sociedad"]);
-      this.formEditar.controls["nomenglatura"].setValue(response["nomenglatura"]);
+    this.catalogosService.getCategoriaDetalle(id).subscribe(response =>{
+      this.formEditar.controls["nombre"].setValue(response["nombre"]);
     })
 
   }
 
-  editarSociedad(data:any){
-    this.catalogosService.updateSociedades(data, this.idActualizar).subscribe(response =>{
-      this.obtenerSociedades();
+  editarCategoria(data:any){
+    this.catalogosService.updateCategorias(data, this.idActualizar).subscribe(response =>{
+      this.obtenerCategorias();
       Swal.fire(
         'Actualizado!',
         'Tu registro fue correctamente actualizado.',
@@ -162,22 +159,21 @@ export class SociedadesComponent implements OnInit, AfterViewInit {
     })
   }
 
-  crearFormSociedad(contentCrearSociedad){
-    this.crearSociedadDataBandera = true;
+  crearFormCategoria(contentCrearCategoria){
+    this.crearCategoriaDataBandera = true;
     this.formCrear = new FormGroup({
-      sociedad: new FormControl("", Validators.required),
-      nomenglatura: new FormControl("", Validators.required)
+      nombre: new FormControl("", Validators.required),
     });
-    this.modalService.open(contentCrearSociedad, {ariaLabelledBy: 'modal-basic-title', size:'sm'}).result.then((result) => {
+    this.modalService.open(contentCrearCategoria, {ariaLabelledBy: 'modal-basic-title', size:'sm'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed`;
     });
   }
 
-  crearSociedad(data:any){
-    this.catalogosService.postSociedades(data).subscribe( resp =>{
-      this.obtenerSociedades();
+  crearCategoria(data:any){
+    this.catalogosService.postCategorias(data).subscribe( resp =>{
+      this.obtenerCategorias();
       this.modalService.dismissAll();
       Swal.fire(
         'Guardado!',
@@ -187,7 +183,7 @@ export class SociedadesComponent implements OnInit, AfterViewInit {
     })
   }
 
-  eliminarSociedad(id: number){
+  eliminarCategoria(id: number){
     Swal.fire({
       title: 'Estas seguro que deseas eliminarlo?',
       text: "No podras revertir esto!",
@@ -198,8 +194,8 @@ export class SociedadesComponent implements OnInit, AfterViewInit {
       confirmButtonText: 'Si, Eliminarlo!',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      this.catalogosService.deleteSociedadades(id).subscribe(resp =>{
-        this.obtenerSociedades();
+      this.catalogosService.deleteCategorias(id).subscribe(resp =>{
+        this.obtenerCategorias();
       })
       if (result.isConfirmed) {
         Swal.fire(
@@ -210,6 +206,5 @@ export class SociedadesComponent implements OnInit, AfterViewInit {
       }
     })
   }
-
 
 }

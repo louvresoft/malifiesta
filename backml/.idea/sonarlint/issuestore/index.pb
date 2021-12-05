@@ -93,3 +93,17 @@ B
 apps/user/views.py,8\0\80db4aab8b302fb185e20d130244ca2ca264d403
 L
 apps/user/api/serializers.py,5\3\530e93dc483271e4a7bbade02461e0f690d948b2
+G
+apps/base/serializer.py,f\4\f4611a8345e7a003226ebf4fa851b809bffb913f
+X
+(apps/cat_wms/api/views/proveedor_view.py,5\2\52f7b1b4100e1d75c0cb10bcff8f007582f7f1f4
+W
+'apps/cat_wms/api/views/producto_view.py,4\0\40bef5f64046af2453751cde5381048b9fca979a
+G
+backml/settings/base.py,0\a\0a8500ae99e829263bd55729c1a5065ef9d17242
+>
+backml/urls.py,b\9\b94e009a7bedc06dcc41a186f9809d5768af4b3f
+W
+'apps/cat_wms/api/views/sociedad_view.py,e\f\ef4948b3143414e8ac3db502b6985710384ebcd4
+W
+'apps/cat_wms/api/views/flotilla_view.py,2\6\26c8ff90532ca36f9403bc8ca91b20917d6175a3
