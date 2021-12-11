@@ -107,3 +107,11 @@ W
 'apps/cat_wms/api/views/sociedad_view.py,e\f\ef4948b3143414e8ac3db502b6985710384ebcd4
 W
 'apps/cat_wms/api/views/flotilla_view.py,2\6\26c8ff90532ca36f9403bc8ca91b20917d6175a3
+R
+"apps/cat_wms/api/views/__init__.py,b\b\bbee8d864c5c21453e92c4dc2e029b6cbd03cadf
+c
+3apps/cat_wms/api/serializers/producto_serializer.py,d\7\d7cc0e61813dec484fe873a5ee5233175603902b
+c
+3apps/cat_wms/api/serializers/flotilla_serializer.py,7\7\7756e9ebe9198ca0c4e30acbfaf189134ed77a51
+f
+6apps/cat_wms/api/serializers/provedores_serializers.py,c\9\c949cfa6316e53fcae531d1c2aa522c29840ddb4

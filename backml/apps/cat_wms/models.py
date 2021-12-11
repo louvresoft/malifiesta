@@ -59,7 +59,7 @@ class Perfil(BaseModel):
 
 class Sociedad(BaseModel):
     sociedad = models.CharField(max_length=250)
-    nomenglatura = models.CharField("Nomenclatura",max_length=10)
+    nomenglatura = models.CharField("Nomenclatura", max_length=10)
 
     def __str__(self):
         return self.nomenglatura
@@ -70,9 +70,9 @@ class Sociedad(BaseModel):
 
 class Centro(BaseModel):
     centro = models.CharField(max_length=100)
-    nomenglatura = models.CharField("Nomenclatura",max_length=10)
+    nomenglatura = models.CharField("Nomenclatura", max_length=10)
     descripcion = models.TextField(blank=True, null=True)
-    sociedad = models.ForeignKey(Sociedad, on_delete=models.CASCADE)
+    sociedad = models.ForeignKey(Sociedad, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.nomenglatura
@@ -101,6 +101,7 @@ class Categoria(BaseModel):
 
     class Meta:
         db_table = 'cat_categorias'
+
 
 class Clientes(BaseModel):
     nombre = models.CharField(max_length=50)
@@ -204,3 +205,4 @@ class Producto(BaseModel):
 #     producto_padre = models.ForeignKey(Producto, models.CASCADE, related_name="producto_padre")
 #     producto = models.ForeignKey(Producto, models.CASCADE, related_name="producto_hijo")
 #     cantidad = models.IntegerField()
+

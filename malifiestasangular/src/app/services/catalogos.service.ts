@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
 import { Categorias } from '../models/categorias.models';
+import { Centros } from '../models/centros.models';
 
 
 
@@ -179,6 +180,56 @@ export class CatalogosService {
 
   updateCategorias(data:any, id: number){
     const url: string = this._auth.getUrlProyect() + 'api/cat/categorias/'+ id +'/';
+    return this.http.put(url, data);
+  }
+
+   /* 
+    Crud Centros
+  */
+
+    getCentros(filter: string, limit = 5, page = 0): Observable<any> {
+      let offset = page * limit;
+      let filtro = 0;
+      let params = "";
+      if(filter != ""){
+        filtro = parseInt(filter);
+        params = "api/cat/centros/?search="+filtro+"&limit="+ limit +"&offset="+offset;
+      }
+      else {
+        params = "api/cat/centros/?limit="+ limit +"&offset="+offset;
+      }
+  
+      return this.http.get<PeticionesApi>(this._auth.getUrlProyect() + params).pipe(
+        tap((response: any) => {
+        }),
+        catchError(e => {
+          if (e.status == 400) {
+              //Swal.fire('Info', e.error.detail, 'warning');
+              return throwError(e);
+          }
+         // Swal.fire('Error', e.error.mensaje, 'error');
+          return throwError(e);
+        })
+      );
+   }
+
+   getCentroDetalle(id: number){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/centros/'+ id +'/';
+    return this.http.get<Centros>(url).pipe();
+  }
+
+  deleteCentros(id: number){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/centros/'+ id +'/';
+    return this.http.delete(url);
+  }
+
+  postCentros(data: any){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/centros/';
+    return this.http.post(url, data);
+  }
+
+  updateCentros(data:any, id: number){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/centros/'+ id +'/';
     return this.http.put(url, data);
   }
 }
