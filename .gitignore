@@ -169,7 +169,23 @@ cython_debug/
 # profiling files
 chrome-profiler-events*.json
 
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+
+# Sensitive or high-churn files:
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+
 # IDEs and editors
+.idea/sonarlint
 /.idea
 .project
 .classpath
@@ -177,6 +193,12 @@ chrome-profiler-events*.json
 *.launch
 .settings/
 *.sublime-workspace
+
+/backml/.idea
+backml/.idea
+/backml/.idea/sonarlint/issuestore/index.pb
+backml/.idea/sonarlint/issuestore/index.pb
+
 
 # IDE - VSCode
 .vscode/*

@@ -1,0 +1,73 @@
+<div fxLayout="column" fxFlexFill>
+    <mat-toolbar class="navbar-color mat-elevation-z8 p-0" fxLayout="row" fxLayoutAlign="start stretch" style="z-index: 2">
+      
+      <button mat-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+  
+      <button mat-button routerLink="/dashboard" routerLinkActive="router-link-active">
+        <mat-icon>home</mat-icon>
+      </button>
+  
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="pl-3">
+        <span fxHide fxShow.xs>Malifiesta</span>
+      </div>
+  
+      <span fxFlex></span>
+  
+      <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button routerLink="/dashboard" routerLinkActive="router-link-active no-border">settings</button>
+      </div>
+    </mat-toolbar>
+  
+    <mat-drawer-container fxFlex autosize class="background">
+      <mat-drawer #drawer>
+        <div fxLayout="column">
+          <button mat-button routerLink="/dashboard" routerLinkActive="selected no-border txt-bold" fxLayoutAlign="start" class="py-2 pr-5">
+            <mat-icon class="mr-2">filter_1</mat-icon>Admin</button>
+          <mat-divider></mat-divider>
+        
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Catálogos
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+    
+              <mat-nav-list>
+                <a mat-list-item [routerLink]="['/sociedades']" >
+                  Sociedades
+                </a>
+                <a mat-list-item [routerLink]="['/proveedores']" >
+                  Proveedores
+                </a>
+                <a mat-list-item [routerLink]="['/categorias']" >
+                  Categorias
+                </a>
+                <a mat-list-item [routerLink]="['/centros']" >
+                  Centros
+                </a>
+                <a mat-list-item [routerLink]="['/Provedores']" >
+                  Productos
+                </a>
+                <a mat-list-item [routerLink]="['/Provedores']" >
+                  Flotilla
+                </a>
+              </mat-nav-list>
+            </mat-expansion-panel>
+          </mat-accordion></div>
+      </mat-drawer>
+  
+      <!--PAGES-->
+      <div style="display: inline;">
+        <router-outlet></router-outlet>
+        <br>
+      </div>
+    </mat-drawer-container>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted"></span>
+      </div>
+    </footer>
+  </div>

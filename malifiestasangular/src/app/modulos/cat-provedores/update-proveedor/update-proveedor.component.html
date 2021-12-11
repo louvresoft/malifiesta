@@ -1,0 +1,32 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<form [formGroup]="form" class="dialog-form" (ngSubmit)="onSubmit(form.value)">
+    <div mat-dialog-title>
+      Editar Proveedor
+    </div>
+    <mat-dialog-content>
+      <mat-form-field>
+        <input formControlName="nombre" matInput placeholder="Nombre" />
+        <mat-error>Este campo es obligatorio.</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input formControlName="telefono" matInput placeholder="Telefono" />
+        <mat-error>Este campo es obligatorio.</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input formControlName="telefono2" matInput placeholder="Telefono2" />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input formControlName="direccion" matInput placeholder="Dirección" />
+      </mat-form-field>
+    </mat-dialog-content>
+    <br>
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" 
+        type="submit" >Guardar</button>
+    </mat-dialog-actions>
+  </form>
