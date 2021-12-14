@@ -4,6 +4,9 @@
 
 html, body { height: 100%; width: 100%; }
 
+table {
+  width: 100%;
+}
 
 
 .navbar-color {background-color: #3445a8; color: white;}
