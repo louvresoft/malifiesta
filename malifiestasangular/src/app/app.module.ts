@@ -23,6 +23,7 @@ import { SociedadesComponent } from './modulos/catalogos/sociedades/sociedades.c
 import { CategoriasComponent } from './modulos/catalogos/categorias/categorias.component';
 import { CentrosComponent } from './modulos/catalogos/centros/centros.component';
 import { ProductosComponent } from './modulos/catalogos/productos/productos.component';
+import { CrearProductoComponent } from './modulos/catalogos/productos/crear-producto/crear-producto.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ProductosComponent } from './modulos/catalogos/productos/productos.comp
     SociedadesComponent,
     CategoriasComponent,
     CentrosComponent,
-    ProductosComponent
+    ProductosComponent,
+    CrearProductoComponent
   ],
   imports: [
     BrowserAnimationsModule,

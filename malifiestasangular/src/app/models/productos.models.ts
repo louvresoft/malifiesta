@@ -1,7 +1,6 @@
 export interface Productos{
     nombre: string,
     descripcion: string,
-    fecha_alta: Date,
     usuario: string,
     proveedor: string,
     codigo: string,
@@ -30,9 +29,6 @@ export interface Productos{
     es_kit: boolean,
     maximo: number,
     minimo: number,
-    estatus: string,
-
-
-
+    estatus: string
 
 }

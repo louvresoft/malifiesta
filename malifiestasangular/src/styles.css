@@ -55,3 +55,9 @@ table {
 
 
 .cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 9999!important; } 
+
+
+.form-element {
+  padding: 5px 0px 25px 2px;
+  width: 100%;
+}

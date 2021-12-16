@@ -163,6 +163,11 @@ export class CatalogosService {
       );
    }
 
+   getCategoriasSP(){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/categorias/';
+    return this.http.get<Categorias>(url).pipe();
+   }
+
    getCategoriaDetalle(id: number){
     const url: string = this._auth.getUrlProyect() + 'api/cat/categorias/'+ id +'/';
     return this.http.get<Categorias>(url).pipe();
@@ -242,10 +247,10 @@ export class CatalogosService {
       let params = "";
       if(filter != ""){
         filtro = parseInt(filter);
-        params = "api/cat/centros/?search="+filtro+"&limit="+ limit +"&offset="+offset;
+        params = "api/cat/productos/?search="+filtro+"&limit="+ limit +"&offset="+offset;
       }
       else {
-        params = "api/cat/centros/?limit="+ limit +"&offset="+offset;
+        params = "api/cat/productos/?limit="+ limit +"&offset="+offset;
       }
   
       return this.http.get<PeticionesApi>(this._auth.getUrlProyect() + params).pipe(

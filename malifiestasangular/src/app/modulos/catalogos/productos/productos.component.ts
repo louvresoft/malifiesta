@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { fromEvent, Observable, of } from 'rxjs';
 import { merge } from 'rxjs/internal/observable/merge';
+import { Router } from '@angular/router';
 
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -22,7 +23,7 @@ import { Productos } from 'src/app/models/productos.models';
 })
 export class ProductosComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'codigo', 'nombre', 'proveedor','modelo','actions'];
+  displayedColumns: string[] = ['id','codigo', 'nombre', 'proveedor','modelo','actions'];
   dataSource : MatTableDataSource<Productos> = new MatTableDataSource([]);  
   searchValue: string = "";
   search: Observable<string>;
@@ -51,10 +52,10 @@ export class ProductosComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private catalogosService: CatalogosService, private activatedRoute: ActivatedRoute, 
-    private modalService: NgbModal,private formBuilder: FormBuilder,) { }
+    private modalService: NgbModal,private formBuilder: FormBuilder, private router: Router) { }
 
-    ngOnInit(): void {}
-/* 
+
+
   ngOnInit(): void {
     this.search = fromEvent(this.inputSearch.nativeElement, 'keyup').pipe(
       map((event: any) => {
@@ -100,6 +101,7 @@ export class ProductosComponent implements OnInit {
       }),
       map((data) => {
         this.resultsLength = data.count;
+        console.log("productos ==>", data.results);
         return data.results;
       }),
       catchError(() => {
@@ -116,12 +118,11 @@ export class ProductosComponent implements OnInit {
     });
   }
 
-  crearCentro(data:any){
-    console.log("x");
-  }
 
-  editarSociedad(){
-    console.log("x");
+  detalleProducto(){
+    console.log("here");
   }
- */
+  crearProducto(){
+    this.router.navigate(['productos-crear']);
+  }
 }
