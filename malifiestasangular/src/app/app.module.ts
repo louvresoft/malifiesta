@@ -24,6 +24,7 @@ import { CategoriasComponent } from './modulos/catalogos/categorias/categorias.c
 import { CentrosComponent } from './modulos/catalogos/centros/centros.component';
 import { ProductosComponent } from './modulos/catalogos/productos/productos.component';
 import { CrearProductoComponent } from './modulos/catalogos/productos/crear-producto/crear-producto.component';
+import { CatalogoAllComponent } from './modulos/catalogos/catalogo-all/catalogo-all.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { CrearProductoComponent } from './modulos/catalogos/productos/crear-prod
     CategoriasComponent,
     CentrosComponent,
     ProductosComponent,
-    CrearProductoComponent
+    CrearProductoComponent,
+    CatalogoAllComponent
   ],
   imports: [
     BrowserAnimationsModule,
