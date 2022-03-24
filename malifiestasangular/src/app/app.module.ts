@@ -22,6 +22,8 @@ import { UpdateProveedorComponent } from './modulos/cat-provedores/update-provee
 import { SociedadesComponent } from './modulos/catalogos/sociedades/sociedades.component';
 import { CategoriasComponent } from './modulos/catalogos/categorias/categorias.component';
 import { CentrosComponent } from './modulos/catalogos/centros/centros.component';
+import { ProductosComponent } from './modulos/catalogos/productos/productos.component';
+import { CrearProductoComponent } from './modulos/catalogos/productos/crear-producto/crear-producto.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { CentrosComponent } from './modulos/catalogos/centros/centros.component'
     UpdateProveedorComponent,
     SociedadesComponent,
     CategoriasComponent,
-    CentrosComponent
+    CentrosComponent,
+    ProductosComponent,
+    CrearProductoComponent
   ],
   imports: [
     BrowserAnimationsModule,

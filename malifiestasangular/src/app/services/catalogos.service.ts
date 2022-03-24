@@ -163,6 +163,11 @@ export class CatalogosService {
       );
    }
 
+   getCategoriasSP(){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/categorias/';
+    return this.http.get<Categorias>(url).pipe();
+   }
+
    getCategoriaDetalle(id: number){
     const url: string = this._auth.getUrlProyect() + 'api/cat/categorias/'+ id +'/';
     return this.http.get<Categorias>(url).pipe();
@@ -230,6 +235,55 @@ export class CatalogosService {
 
   updateCentros(data:any, id: number){
     const url: string = this._auth.getUrlProyect() + 'api/cat/centros/'+ id +'/';
+    return this.http.put(url, data);
+  }
+
+  /* 
+    Crud Productos
+  */
+    getProductos(filter: string, limit = 5, page = 0): Observable<any> {
+      let offset = page * limit;
+      let filtro = 0;
+      let params = "";
+      if(filter != ""){
+        filtro = parseInt(filter);
+        params = "api/cat/productos/?search="+filtro+"&limit="+ limit +"&offset="+offset;
+      }
+      else {
+        params = "api/cat/productos/?limit="+ limit +"&offset="+offset;
+      }
+  
+      return this.http.get<PeticionesApi>(this._auth.getUrlProyect() + params).pipe(
+        tap((response: any) => {
+        }),
+        catchError(e => {
+          if (e.status == 400) {
+              //Swal.fire('Info', e.error.detail, 'warning');
+              return throwError(e);
+          }
+         // Swal.fire('Error', e.error.mensaje, 'error');
+          return throwError(e);
+        })
+      );
+   }
+
+   getProductoDetalle(id: number){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/productos/'+ id +'/';
+    return this.http.get<Centros>(url).pipe();
+  }
+
+  deleteProductos(id: number){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/productos/'+ id +'/';
+    return this.http.delete(url);
+  }
+
+  postProducto(data: any){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/productos/';
+    return this.http.post(url, data);
+  }
+
+  updateProducto(data:any, id: number){
+    const url: string = this._auth.getUrlProyect() + 'api/cat/productos/'+ id +'/';
     return this.http.put(url, data);
   }
 }

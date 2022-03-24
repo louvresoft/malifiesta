@@ -1,0 +1,200 @@
+<div  #inputSearch>
+
+</div>
+<div class="container">
+    <mat-card>
+        <mat-card-title>
+            <mat-toolbar color="primary">
+                <span>Crear Productos</span>
+              </mat-toolbar>
+        </mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="formCrear" (ngSubmit)="crearProducto(formCrear.value)">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Clave" formControlName="nombre">
+                        <mat-error>Este campo es obligatorio.</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <mat-form-field class="form-element">
+                      <mat-select placeholder="Selecciona una Categoria" formControlName="categoria" name="categoria" >
+                        <mat-option *ngFor="let categoria of categoriasList" [value]="categoria.id" >{{ categoria.nombre }}</mat-option>
+                      </mat-select>
+                        <mat-error>Este campo es obligatorio.</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <mat-form-field class="form-element">
+                      <mat-select placeholder="Selecciona un Proveedor" formControlName="proveedor" name="proveedor" >
+                        <mat-option *ngFor="let proveedor of proveedoresList" [value]="proveedor.id" >{{ proveedor.nombre }}</mat-option>
+                      </mat-select>
+                        <mat-error>Este campo es obligatorio.</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Descripción" formControlName="descripcion">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Código" formControlName="codigo">
+                            <mat-error *ngIf="this.formCrear.get('codigo')?.errors?.['minlength']">
+                              (Debe tener como mínimo 7 caracteres)
+                            </mat-error>
+                            <mat-error *ngIf="this.formCrear.get('codigo')?.errors?.['maxlength']">
+                              (Debe tener como máximo 7 caracteres)
+                            </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Modelo" formControlName="modelo">
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                        </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Precio Compra" formControlName="precio_compra" type="number">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Reposición" formControlName="reposicion" type="number">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                          <mat-form-field >
+                            <mat-label>Selecciona un Estatus</mat-label>
+                            <mat-select formControlName="estatus">
+                              <mat-option *ngFor="let food of estatus" [value]="food.value">
+                                {{food.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                          </mat-form-field>
+                          
+                    </div>
+                    <div class="form-group col-md-3">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Ganancia" formControlName="ganancia" type="number">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Precio Renta" formControlName="precio_renta" type="number">
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Precio Mayoreo" formControlName="precio_renta_mayoreo" type="number">
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                        </mat-form-field>
+                      </div>
+                  </div>
+                  <mat-toolbar>
+                    <span>Especificaciones</span>
+                  </mat-toolbar>
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Máximo" formControlName="maximo" type="number">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Mínimo" formControlName="minimo" type="number">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Departamento" formControlName="departamento">
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Código de Barras" formControlName="codigo_barras">
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                        </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Alto" formControlName="alto" type="number">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Ancho" formControlName="ancho" type="number">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Largo" formControlName="largo" type="number">
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Volumen cm3" formControlName="volumen_cm3" type="number">
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                        </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Piezas Caja" formControlName="piezas_caja" type="number">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <mat-form-field class="form-element">
+                          <input matInput placeholder="Piezas Tarima" formControlName="piezas_tarima" type="number">
+                          <mat-error>Este campo es obligatorio.</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Clasificación" formControlName="clasificacion" >
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <mat-form-field class="form-element">
+                            <input matInput placeholder="Observación" formControlName="observacion">
+                            <mat-error>Este campo es obligatorio.</mat-error>
+                        </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col text-right">
+                        <button mat-raised-button color="primary" type="submit">Guardar</button>
+                      </div>
+                  </div>
+              </form>
+        </mat-card-content>
+        <mat-card-actions align="end"></mat-card-actions>
+        <mat-card-footer></mat-card-footer>
+    </mat-card>
+</div>
