@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CatProvedoresComponent } from './modulos/cat-provedores/cat-provedores.component';
+import { CatalogoAllComponent } from './modulos/catalogos/catalogo-all/catalogo-all.component';
 import { CategoriasComponent } from './modulos/catalogos/categorias/categorias.component';
 import { CentrosComponent } from './modulos/catalogos/centros/centros.component';
 import { CrearProductoComponent } from './modulos/catalogos/productos/crear-producto/crear-producto.component';
@@ -50,6 +51,11 @@ const routes: Routes = [
       {
         path: "productos-crear",
         component: CrearProductoComponent,
+        data: { titulo: "Crear Producto" }
+      },
+      {
+        path: "catalogos",
+        component: CatalogoAllComponent,
         data: { titulo: "Crear Producto" }
       },
     ]
