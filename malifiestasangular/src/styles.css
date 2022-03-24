@@ -4,6 +4,9 @@
 
 html, body { height: 100%; width: 100%; }
 
+table {
+  width: 100%;
+}
 
 
 .navbar-color {background-color: #3445a8; color: white;}
@@ -52,3 +55,9 @@ html, body { height: 100%; width: 100%; }
 
 
 .cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 9999!important; } 
+
+
+.form-element {
+  padding: 5px 0px 25px 2px;
+  width: 100%;
+}
